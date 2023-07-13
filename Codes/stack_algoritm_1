@@ -20,17 +20,17 @@ int main() {
                 stack[count-1] ='\0';
                 count--;
             } else {
-                    printf("There is no int in the stack\n");
+                    printf("There is no integer in the stack\n");
             }
         } else if(strcmp(temp, top) == 0) {
             if(count == 0) {
-                printf("There is no int in the stack\n");
+                printf("There is no integer in the stack\n");
             } else {
                 printf("%d\n", stack[count-1]);
             }
         } else if(strcmp(temp, empty) == 0) {
             if(count == 0) {
-                printf("There is no int in the stack\n");
+                printf("There is no integer in the stack\n");
             } else {
                 printf("0\n");
             }
