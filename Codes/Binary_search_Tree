@@ -2,6 +2,7 @@
 #include <stdlib.h>
 
 typedef struct _bst {
+    
     int key;
     struct _bst *left;
     struct _bst *right;
@@ -45,6 +46,7 @@ bst* delete(bst* root, int key) {
     bst* child = NULL;
 
     del = root;
+    
     while(del != NULL) {    
         if(key == del->key) {
             break;
@@ -110,6 +112,29 @@ bst* delete(bst* root, int key) {
     free(del);
     return root;
 }
+/*
+void check(bst* root) {
+    bst* chk = NULL;
+    bst* parent = NULL;
+
+    chk = root;
+    
+    while(chk != NULL) {    
+        if(key == chk->key) {
+            break;
+        }
+        parent = chk;
+        if(key < chk->key) {
+            chk = chk->left;
+        } else {
+            chk = chk->right;
+        }
+    }
+    if(root != NULL) {
+        check(chk > key->left);
+    }
+}
+*/
 
 void print_bst(bst* root) {
     if(root != NULL) {
@@ -119,25 +144,52 @@ void print_bst(bst* root) {
     }
 }
 
+int getnum, searchkey, wantdel;
+int num[100];
 int main() {
     bst* root = NULL;
-    root = insert(root, 7);
-    root = insert(root, 3);
-    root = insert(root, 8);
-    root = insert(root, 1);
-    root = insert(root, 5);
-    root = insert(root, 4);
-    root = insert(root, 10);
+    
+    printf("노드의 개수를 입력하세요.\n");
+    scanf("%d", &getnum);
+    printf("------------------------\n");
+    printf("노드를 입력하세요.\n");
+    for(int i = 0; i < getnum; i++) {
+        scanf("%d", &num[i]);
+        root = insert(root, num[i]);
+    }
+    printf("------------------------\n");
 
+    printf("오름차순으로 정렬하면 : ");
     print_bst(root);
-    printf("\n");
+    printf("입니다.\n");
 
-    bst* ptr = search(root, 7);
-    printf("%d\n", ptr->key);
+    printf("------------------------\n");
+    printf("검색할 노드 번호를 입력하세요.\n");
+    scanf("%d", &searchkey);
 
-    root = delete(root, 7);
+    bst* search_result = NULL;
+
+    search_result = search(root, searchkey);
+
+    printf("------------------------\n");
+    if(search_result == NULL) {
+        printf("Error : 찾는 값이 없습니다.");
+    } else {
+        printf("찾으신 값은 존재합니다.\n");
+    }
+    printf("------------------------\n");
+    printf("삭제하려는 값을 입력하세요.\n");
+    scanf("%d", &wantdel);
+
+    bst* del_result = NULL;
+
+    del_result = delete(root, wantdel);
+    root = del_result;
+
+    printf("%d이(가) 삭제되었습니다.\n", wantdel);
+    printf("남은 노드는 : ");
     print_bst(root);
-    printf("\n");
+    printf("입니다.\n");
 
     return 0;
 }
