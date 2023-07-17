@@ -112,29 +112,6 @@ bst* delete(bst* root, int key) {
     free(del);
     return root;
 }
-/*
-void check(bst* root) {
-    bst* chk = NULL;
-    bst* parent = NULL;
-
-    chk = root;
-    
-    while(chk != NULL) {    
-        if(key == chk->key) {
-            break;
-        }
-        parent = chk;
-        if(key < chk->key) {
-            chk = chk->left;
-        } else {
-            chk = chk->right;
-        }
-    }
-    if(root != NULL) {
-        check(chk > key->left);
-    }
-}
-*/
 
 void print_bst(bst* root) {
     if(root != NULL) {
